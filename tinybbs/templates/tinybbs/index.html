@@ -1,0 +1,34 @@
+{% extends "tinybbs/base_structure.html" %}
+{% load i18n %}
+
+
+{% block site_content %}
+  <div>
+  <ol>
+  {% for item in topics %}
+    <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+  {% endfor %}
+  </ol>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if topics.has_previous %}
+            <a href="?page={{ topics.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ topics.number }} of {{ topics.paginator.num_pages }}.
+        </span>
+
+        {% if topics.has_next %}
+            <a href="?page={{ topics.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+  </div>
+
+
+{% endblock %}
+
+
